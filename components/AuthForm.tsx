@@ -44,7 +44,7 @@ export default function AuthForm({ type }: { type: 'sign-up' | 'sign-in' }) {
 
                 const result = await signUp({
                     uid: userCredential.user.uid,
-                    name : name !,
+                    name : name!,
                     email,
                     password
                 })
