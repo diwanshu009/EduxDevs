@@ -121,7 +121,7 @@ export default function AuthForm({ type }: { type: 'sign-up' | 'sign-in' }) {
                 </Form>
 
                 <p className='text-center'>
-                    {isSign ? 'No account yet?' : 'Have an account already'}
+                    {isSign ? 'No account yet? ' : 'Have an account already? '}
                     <Link href={isSign ? '/sign-up' : '/sign-in'} className='font-bold text-user-primary ml-1'>
                         {isSign ? 'Sign up' : 'Sign in'}
                     </Link>
