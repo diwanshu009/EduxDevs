@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
 import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from 'sonner'
@@ -16,7 +15,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from '@/firebase/client'
 import { signIn, signUp } from '@/lib/actions/auth.action'
 
-const authSchema = (type: 'sign-up' | 'sign-in') => {
+const authSchema = (type: FormType) => {
     return z.object({
         name: type === 'sign-up' ? z.string().min(3) : z.string().optional(),
         email: z.string().email(),
@@ -24,7 +23,7 @@ const authSchema = (type: 'sign-up' | 'sign-in') => {
     });
 }
 
-export default function AuthForm({ type }: { type: 'sign-up' | 'sign-in' }) {
+export default function AuthForm({ type }: { type: FormType }) {
     const router = useRouter();
     const formSchema = authSchema(type);
     const form = useForm<z.infer<typeof formSchema>>({
@@ -63,7 +62,7 @@ export default function AuthForm({ type }: { type: 'sign-up' | 'sign-in' }) {
                 const idToken = await userCredential.user.getIdToken()
 
                 if(!idToken){
-                    toast.error('Sign-in failed')
+                    toast.error('Sign-in failed. Please try again.')
                     return 
                 }
 
@@ -97,7 +96,7 @@ export default function AuthForm({ type }: { type: 'sign-up' | 'sign-in' }) {
                 <h3 className='text-center'>Practice Job Interviews with AI</h3>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4 form">
-                        {type === 'sign-up' && (
+                        {!isSign && (
                             <FormField
                                 control={form.control}
                                 name="name"

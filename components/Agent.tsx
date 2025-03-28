@@ -140,7 +140,7 @@ export default function Agent({ userName, userId, type, feedbackId, interviewId,
 
                 <div className="card-border">
                     <div className="card-content">
-                        <Image src='/user-avatar.png' alt='user avatar' width={540} height={540} className="rounded-full object-cover size-[120px]" />
+                        <Image src='/user-avatar.png' alt='user avatar' width={539} height={539} className="rounded-full object-cover size-[120px]" />
                         <h3>{userName}</h3>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ export default function Agent({ userName, userId, type, feedbackId, interviewId,
                     <button className="relative btn-call" onClick={handleCall}>
                         <span className={cn('absolute animate-ping rounded-full opacity-75', callStatus !== 'CONNECTING' && 'hidden')} />
 
-                        <span>
+                        <span className="relative">
                             {isCallInactiveOrFinished ? 'Call' : '. . .'}
                         </span>
                     </button>

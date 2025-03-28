@@ -6,9 +6,9 @@ import Link from 'next/link'
 import DisplayTechIcons from './DisplayTechIcons'
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
-export default async function InterviewCard({id, userId, role, type, techstack, createdAt} : InterviewCardProps) {
-    const feedback = userId && id ? await getFeedbackByInterviewId({
-        interviewId : id,
+export default async function InterviewCard({interviewId, userId, role, type, techstack, createdAt} : InterviewCardProps) {
+    const feedback = userId && interviewId ? await getFeedbackByInterviewId({
+        interviewId,
         userId,
       })
     : null;
@@ -57,7 +57,7 @@ export default async function InterviewCard({id, userId, role, type, techstack, 
                 <div className='flex flex-row justify-between'>
                     <DisplayTechIcons techStack={techstack} />
                     <Button className='btn-primary'>
-                        <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
+                        <Link href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}>
                             {feedback ? 'Check feedback' : 'View Interview'}
                         </Link>
                     </Button>

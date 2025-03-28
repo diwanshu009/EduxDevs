@@ -7,7 +7,7 @@ interface FormFieldProps<T extends FieldValues> {
     name: Path<T>;
     label: string;
     placeholder?: string;
-    type?: 'text' | 'email' | 'password' | 'file';
+    type?: 'text' | 'email' | 'password';
 }
 
 export default function FormField<T extends FieldValues>({
@@ -22,7 +22,7 @@ export default function FormField<T extends FieldValues>({
             <Controller
                 name={name}
                 control={control}
-                render={({ field, fieldState }: { field: any; fieldState: ControllerFieldState }) => (
+                render={({ field }) => (
                     <FormItem>
                         <FormLabel className="label">{label}</FormLabel>
                         <FormControl>
@@ -33,9 +33,7 @@ export default function FormField<T extends FieldValues>({
                                 {...field} 
                             />
                         </FormControl>
-                        {fieldState?.error && (
-                            <FormMessage className="text-red-500">{fieldState.error.message}</FormMessage>
-                        )}
+                        <FormMessage />
                     </FormItem>
                 )}
             />

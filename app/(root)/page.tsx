@@ -36,25 +36,39 @@ export default async function page() {
 
                 <div className='interviews-section'>
                     {hasPastInterviews ? (
-                        userInterviews?.map((interview: any) => (
-                            <InterviewCard {...interview} key={interview.id} />
+                        userInterviews?.map((interview) => (
+                            <InterviewCard
+                                key={interview.id}
+                                userId={user?.id}
+                                interviewId={interview.id}
+                                role={interview.role}
+                                type={interview.type}
+                                techstack={interview.techstack}
+                                createdAt={interview.createdAt} />
                         ))) : (
-                            <p>You haven't taken any interviews yet</p>
-                        )
+                        <p>You haven't taken any interviews yet</p>
+                    )
                     }
                 </div>
             </section>
 
             <section className='flex flex-col gap-6 mt-8'>
-                <h2>Take an Interview</h2>
+                <h2>Take Interviews</h2>
 
                 <div className='interviews-section'>
                     {upcomingInterviews ? (
                         latestInterviews?.map((interview: any) => (
-                            <InterviewCard {...interview} key={interview.id} />
+                            <InterviewCard
+                                key={interview.id}
+                                userId={user?.id}
+                                interviewId={interview.id}
+                                role={interview.role}
+                                type={interview.type}
+                                techstack={interview.techstack}
+                                createdAt={interview.createdAt} />
                         ))) : (
-                            <p>There are no new interviews available</p>
-                        )
+                        <p>There are no interviews available</p>
+                    )
                     }
                 </div>
             </section>
